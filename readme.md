@@ -1,3 +1,10 @@
+# My own notes
+
+```
+util/docker_build.sh crkbd/rev1:esbenboye
+```
+
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)

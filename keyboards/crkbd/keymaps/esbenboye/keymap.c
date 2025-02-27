@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    DK_LABK,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   MO(1),  KC_SPC,     KC_SPC,   MO(2), KC_LOPT
+                                          KC_LOPT,   MO(1),  KC_SPC,     KC_SPC,   MO(2), KC_LOPT
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -120,23 +120,6 @@ void oled_render_layer_state(void) {
     }
 }
 
-void oled_render_count(void) {
-    char countString[5];
-    snprintf(countString, sizeof(countString)+3, "%d \n", count);
-    oled_write_ln("CNT:", false);
-    oled_write_ln(countString, false);
-
-    char wpmString[5];
-    snprintf(wpmString, sizeof(wpmString)+3, "%d \n", get_current_wpm());
-    oled_write_ln("WPM:", false);
-    oled_write_ln(wpmString, false);
-
-    char maxwpmString[5];
-    snprintf(maxwpmString, sizeof(maxwpmString)+3, "%d \n", max_wpm);
-    oled_write_ln("MWPM:", false);
-    oled_write_ln(maxwpmString, false);
-}
-
 char keylog_str[24] = {};
 
 const char code_to_name[60] = {
@@ -194,10 +177,6 @@ void oled_task_user(void) {
         oled_render_layer_state();
         oled_render_keylog();
     } else {
-        if(get_current_wpm() > max_wpm) {
-            max_wpm = get_current_wpm();
-        }
-        oled_render_count();
     }
 }
 
